@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://manthan.dev
+
+# Sitemaps
+Sitemap: https://manthan.dev/sitemap.xml

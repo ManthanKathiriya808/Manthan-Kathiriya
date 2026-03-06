@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Instagram, ArrowRight, Send } from "lucide-react";
+import { Mail, Linkedin, Github, Instagram, ArrowRight, Send, MessageCircle } from "lucide-react";
 import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
@@ -10,6 +10,7 @@ export default function Contact() {
     const socialLinks = [
         { name: "LinkedIn", url: "https://www.linkedin.com/in/manthan-kathiriya/", icon: <Linkedin size={22} /> },
         { name: "GitHub", url: "https://github.com/ManthanKathiriya808", icon: <Github size={22} /> },
+        { name: "WhatsApp", url: "https://wa.me/918320576261", icon: <MessageCircle size={22} /> },
         { name: "Instagram", url: "https://www.instagram.com/manthan_kathiriya_9_9_9/", icon: <Instagram size={22} /> },
         { name: "Email", url: "mailto:manthankathiriya808@gmail.com", icon: <Mail size={22} /> },
     ];

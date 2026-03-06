@@ -51,7 +51,7 @@ export default function Navbar() {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="flex items-center gap-2 group cursor-pointer"
+                        className="hidden md:flex items-center gap-2 group cursor-pointer"
                     >
                         <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/20 group-hover:bg-primary/30 transition-all duration-300">
                             <Atom className="text-primary w-6 h-6 group-hover:rotate-180 transition-transform duration-700" />
