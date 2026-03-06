@@ -2,6 +2,5 @@
 module.exports = {
     siteUrl: "https://manthan.dev",
     generateRobotsTxt: true,
-    // (optional)
-    // ...other options
+    generateIndexSitemap: false,
 }
