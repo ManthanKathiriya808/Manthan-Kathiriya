@@ -12,7 +12,6 @@ import Magnetic from "@/components/Magnetic";
 import ScrollVelocity from "@/components/ScrollVelocity";
 import FeatureSection from "@/components/FeatureSection";
 import TechStackBeams from "@/components/TechStackBeams";
-import HorizontalScroll from "@/components/HorizontalScroll";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -88,7 +87,6 @@ export default function Home() {
       <TechStackBeams />
 
       <Projects />
-      <HorizontalScroll />
       <Experience />
       <Contact />
     </main >

@@ -56,8 +56,8 @@ export default function Navbar() {
                         <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center border border-primary/20 group-hover:bg-primary/30 transition-all duration-300">
                             <Atom className="text-primary w-6 h-6 group-hover:rotate-180 transition-transform duration-700" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight text-white uppercase italic">
-                            Manthan<span className="text-primary">.</span>
+                        <span className="text-xl font-bold tracking-tight text-white  italic">
+                            Manthan<span className="text-primary text-3xl ">.</span>dev
                         </span>
                     </motion.div>
                 </Magnetic>
