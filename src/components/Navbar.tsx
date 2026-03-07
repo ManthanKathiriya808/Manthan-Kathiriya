@@ -88,7 +88,12 @@ export default function Navbar() {
                 {/* Mobile Toggle */}
                 <div className="md:hidden">
                     <Magnetic>
-                        <button onClick={() => setIsOpen(!isOpen)} className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white">
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded={isOpen}
+                        >
                             {isOpen ? <X size={20} /> : <Menu size={20} />}
                         </button>
                     </Magnetic>

@@ -65,9 +65,10 @@ function RippleMaterial({ url }: { url: string }) {
 
     useEffect(() => {
         if (texture) {
-            texture.minFilter = THREE.LinearFilter;
-            texture.magFilter = THREE.LinearFilter;
-            texture.generateMipmaps = false;
+            const tex = texture.clone(); // Clone to avoid mutating original
+            tex.minFilter = THREE.LinearFilter;
+            tex.magFilter = THREE.LinearFilter;
+            tex.generateMipmaps = false;
         }
     }, [texture]);
 

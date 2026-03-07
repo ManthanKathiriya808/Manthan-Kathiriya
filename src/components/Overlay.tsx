@@ -49,7 +49,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute w-full px-8 md:px-[10%] flex justify-end"
             >
-                <div className="max-w-xl bg-black/10 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-2xl md:rounded-none border border-white/10 md:border-transparent shadow-2xl md:shadow-none text-right">
+                <div className="max-w-xl p-8 md:p-0 text-right">
                     <h2 className="text-3xl md:text-5xl font-semibold text-white mb-4 leading-tight">
                         I build interactive <br /><span className="text-white/60">digital experiences.</span>
                     </h2>
@@ -64,7 +64,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity3, y: y3 }}
                 className="absolute w-full px-8 md:px-[10%] flex justify-start"
             >
-                <div className="max-w-xl text-left bg-black/10 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-8 md:p-0 rounded-2xl md:rounded-none border border-white/10 md:border-transparent shadow-2xl md:shadow-none">
+                <div className="max-w-xl text-left p-8 md:p-0">
                     <h2 className="text-3xl md:text-5xl font-semibold text-white mb-4 leading-tight">
                         Bridging design <span className="text-white/60">&amp;</span> engineering.
                     </h2>
@@ -79,7 +79,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity4, y: y4 }}
                 className="absolute bottom-24 w-full flex flex-col items-center justify-center px-8 md:px-[10%]"
             >
-                <div className="max-w-xl text-center bg-black/10 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-2xl md:rounded-none border border-white/10 md:border-transparent shadow-2xl md:shadow-none">
+                <div className="max-w-xl text-center p-6 md:p-0">
                     <h2 className="text-2xl md:text-4xl font-semibold text-white mb-2 leading-tight">
                         Ready to explore?
                     </h2>

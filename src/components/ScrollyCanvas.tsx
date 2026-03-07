@@ -29,27 +29,66 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
       const loadedImages: HTMLImageElement[] = new Array(FRAME_COUNT);
       let loadedCount = 0;
 
-      const results = await Promise.all(
-        Array.from({ length: FRAME_COUNT }, (_, i) => {
-          return new Promise<HTMLImageElement>((resolve) => {
-            const img = new Image();
-            const indexStr = i.toString().padStart(3, "0");
-            img.src = `/sequence/frame_${indexStr}_delay-0.041s.webp`;
-            img.onload = () => {
-              loadedCount++;
-              resolve(img);
-            };
-            img.onerror = () => {
-              loadedCount++;
-              resolve(img);
-            };
-          });
-        })
-      );
+      // Number of frames to load immediately so the user sees the initial render
+      const INITIAL_FRAMES_TO_LOAD = 5;
 
-      setImages(results);
+      // Function to load a single image
+      const loadImage = (index: number): Promise<HTMLImageElement> => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          const indexStr = index.toString().padStart(3, "0");
+          img.src = `/sequence/frame_${indexStr}_delay-0.041s.webp`;
+          img.onload = () => {
+            loadedCount++;
+            resolve(img);
+          };
+          img.onerror = () => {
+            loadedCount++;
+            resolve(img); // Still resolve to not break the array mapping
+          };
+        });
+      };
+
+      // 1. Load initial frames synchronously to unblock rendering (LCP optimization)
+      const initialPromises = [];
+      for (let i = 0; i < INITIAL_FRAMES_TO_LOAD; i++) {
+        initialPromises.push(loadImage(i));
+      }
+
+      const initialResults = await Promise.all(initialPromises);
+      initialResults.forEach((img, i) => {
+        loadedImages[i] = img;
+      });
+
+      // Show the canvas immediately since we have the first frame
+      setImages([...loadedImages]);
       setImagesLoaded(true);
       onLoaded();
+
+      // 2. Load the remaining frames in the background asynchronously
+      const loadRemaining = async () => {
+        // Load in batches of 10 to not choke the network
+        const BATCH_SIZE = 10;
+        for (let i = INITIAL_FRAMES_TO_LOAD; i < FRAME_COUNT; i += BATCH_SIZE) {
+          const batchPromises = [];
+          for (let j = 0; j < BATCH_SIZE && i + j < FRAME_COUNT; j++) {
+            batchPromises.push(loadImage(i + j));
+          }
+          const batchResults = await Promise.all(batchPromises);
+
+          batchResults.forEach((img, j) => {
+            loadedImages[i + j] = img;
+          });
+
+          // Update state smoothly as chunks arrive
+          setImages([...loadedImages]);
+
+          // Yield to browser main thread
+          await new Promise(r => setTimeout(r, 0));
+        }
+      };
+
+      loadRemaining();
     };
 
     preloadImages();

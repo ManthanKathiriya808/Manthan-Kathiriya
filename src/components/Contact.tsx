@@ -8,15 +8,15 @@ export default function Contact() {
     const [state, handleSubmit] = useForm("xbdanpov");
 
     const socialLinks = [
-        { name: "LinkedIn", url: "https://www.linkedin.com/in/manthan-kathiriya/", icon: <Linkedin size={22} /> },
-        { name: "GitHub", url: "https://github.com/ManthanKathiriya808", icon: <Github size={22} /> },
-        { name: "WhatsApp", url: "https://wa.me/918320576261", icon: <MessageCircle size={22} /> },
-        { name: "Instagram", url: "https://www.instagram.com/manthan_kathiriya_9_9_9/", icon: <Instagram size={22} /> },
-        { name: "Email", url: "mailto:manthankathiriya808@gmail.com", icon: <Mail size={22} /> },
+        { name: "LinkedIn", url: "https://www.linkedin.com/in/manthan-kathiriya/", icon: <Linkedin size={22} />, color: "#0077b5" },
+        { name: "GitHub", url: "https://github.com/ManthanKathiriya808", icon: <Github size={22} />, color: "#ffffff" },
+        { name: "WhatsApp", url: "https://wa.me/918320576261", icon: <MessageCircle size={22} />, color: "#25d366" },
+        { name: "Instagram", url: "https://www.instagram.com/manthan_kathiriya_9_9_9/", icon: <Instagram size={22} />, color: "#e4405f" },
+        { name: "Email", url: "mailto:manthankathiriya808@gmail.com", icon: <Mail size={22} />, color: "#ea4335" },
     ];
 
     return (
-        <footer id="contact" className="py-20 md:py-32 bg-background border-t border-white/5 relative overflow-hidden">
+        <footer id="contact" className="pt-20 md:pt-32 bg-background border-t border-white/5 relative overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
@@ -61,9 +61,11 @@ export default function Contact() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.1 * i, duration: 0.5 }}
+                                        aria-label={link.name}
                                         className="flex items-center gap-3 px-6 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 group"
+                                        style={{ borderColor: `${link.color}33`, backgroundColor: `${link.color}0D` }}
                                     >
-                                        <span className="text-white/60 group-hover:text-black transition-colors">{link.icon}</span>
+                                        <span className="transition-colors group-hover:text-black" style={{ color: link.color }}>{link.icon}</span>
 
                                     </motion.a>
                                 ))}
@@ -147,7 +149,7 @@ export default function Contact() {
                     </motion.div>
                 </div>
 
-                <div className="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+                <div className="mt-16 pt-8 pb-0 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
                     <p className="text-white/40 text-sm tracking-widest uppercase font-medium">
                         © 2026 MANTHAN KATHIRIYA
                     </p>

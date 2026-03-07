@@ -100,11 +100,31 @@ export default function Projects() {
                                         </p>
 
                                         <div className="flex flex-wrap gap-2 mt-auto">
-                                            {p.tech.map((t, idx) => (
-                                                <span key={idx} className="px-4 py-1.5 text-xs font-medium text-white/70 bg-white/5 rounded-full border border-white/10 group-hover:border-primary/30 transition-colors">
-                                                    {t}
-                                                </span>
-                                            ))}
+                                            {p.tech.map((t, idx) => {
+                                                const colors: Record<string, string> = {
+                                                    "React.js": "text-cyan-400 border-cyan-400/30 bg-cyan-400/5",
+                                                    "React": "text-cyan-400 border-cyan-400/30 bg-cyan-400/5",
+                                                    "TypeScript": "text-blue-500 border-blue-500/30 bg-blue-500/5",
+                                                    "React Query": "text-red-400 border-red-400/30 bg-red-400/5",
+                                                    "Tailwind CSS": "text-sky-400 border-sky-400/30 bg-sky-400/5",
+                                                    "TailwindCSS": "text-sky-400 border-sky-400/30 bg-sky-400/5",
+                                                    "JavaScript": "text-yellow-400 border-yellow-400/30 bg-yellow-400/5",
+                                                    "CSS3": "text-blue-400 border-blue-400/30 bg-blue-400/5",
+                                                    "Bootstrap": "text-purple-500 border-purple-500/30 bg-purple-500/5",
+                                                    "UI Verse": "text-pink-400 border-pink-400/30 bg-pink-400/5",
+                                                    "Flask": "text-gray-400 border-gray-400/30 bg-gray-400/5",
+                                                    "Arduino": "text-teal-400 border-teal-400/30 bg-teal-400/5",
+                                                    "Sensors": "text-orange-400 border-orange-400/30 bg-orange-400/5",
+                                                    "Shopify": "text-green-400 border-green-400/30 bg-green-400/5",
+                                                    "ShipRocket": "text-purple-400 border-purple-400/30 bg-purple-400/5",
+                                                    "Vite": "text-purple-500 border-purple-500/30 bg-purple-500/5",
+                                                };
+                                                return (
+                                                    <span key={idx} className={`px-4 py-1.5 text-xs font-medium border rounded-full transition-all duration-300 ${colors[t] || "text-white/70 border-white/10 bg-white/5"} group-hover:border-opacity-60`}>
+                                                        {t}
+                                                    </span>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 </div>

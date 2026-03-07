@@ -44,7 +44,12 @@ export const AnimatedBeam = ({
     endXOffset = 0,
     endYOffset = 0,
 }: AnimatedBeamProps) => {
-    const id = useId();
+    const [id, setId] = useState("");
+    const reactId = useId();
+
+    useEffect(() => {
+        setId(reactId);
+    }, [reactId]);
     const [path, setPath] = useState("");
     const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
 

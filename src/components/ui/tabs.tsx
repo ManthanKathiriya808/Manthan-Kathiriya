@@ -7,6 +7,7 @@ export interface Tab {
     id: string;
     label: string;
     content: React.ReactNode;
+    activeColor?: string;
 }
 
 interface TabsProps {
@@ -38,13 +39,15 @@ export function Tabs({
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`relative px-6 py-3 rounded-full text-sm font-medium transition-colors whitespace-nowrap outline-none ${isActive ? "text-background" : "text-white/60 hover:text-white"
+                            className={`relative px-6 py-3 rounded-full text-sm font-medium transition-colors whitespace-nowrap outline-none ${isActive
+                                ? "text-white"
+                                : "text-white/60 hover:text-white"
                                 } ${tabClassName}`}
                         >
                             {isActive && (
                                 <motion.div
                                     layoutId="active-tab-indicator"
-                                    className={`absolute inset-0 bg-primary rounded-full -z-10 ${activeTabClassName}`}
+                                    className={`absolute inset-0 rounded-full -z-10 ${tab.activeColor || "bg-primary"} ${activeTabClassName}`}
                                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                 />
                             )}

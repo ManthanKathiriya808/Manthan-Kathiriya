@@ -50,7 +50,7 @@ export default function About() {
             <div className="absolute bottom-1/4 right-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-secondary/10 blur-[100px] sm:blur-[150px] rounded-full -z-10 animate-pulse" style={{ animationDelay: '2s' }} />
 
             <div className="max-w-7xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 xl:gap-24 items-center">
                     {/* Text Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -103,27 +103,58 @@ export default function About() {
                     >
                         <div className="w-full">
                             <Tabs
-                                tabs={skills.map((skillGroup) => ({
-                                    id: skillGroup.category,
-                                    label: skillGroup.category,
-                                    content: (
-                                        <div className="flex flex-wrap justify-center gap-3 mt-8">
-                                            {skillGroup.items.map((skill) => (
-                                                <motion.span
-                                                    key={skill}
-                                                    whileHover={{
-                                                        scale: 1.1,
-                                                        backgroundColor: "rgba(139, 92, 246, 0.2)",
-                                                        borderColor: "rgba(139, 92, 246, 0.4)"
-                                                    }}
-                                                    className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-2xl text-sm font-medium text-white/80 transition-all duration-300 cursor-default"
-                                                >
-                                                    {skill}
-                                                </motion.span>
-                                            ))}
-                                        </div>
-                                    )
-                                }))}
+                                tabs={skills.map((skillGroup) => {
+                                    const categoryColors: Record<string, string> = {
+                                        "Frontend": "bg-violet-600",
+                                        "Backend": "bg-emerald-600",
+                                        "CMS & Platforms": "bg-sky-600",
+                                        "Tools": "bg-amber-600"
+                                    };
+                                    return {
+                                        id: skillGroup.category,
+                                        label: skillGroup.category,
+                                        activeColor: categoryColors[skillGroup.category],
+                                        content: (
+                                            <div className="flex flex-wrap justify-center gap-3 mt-8">
+                                                {skillGroup.items.map((skill) => {
+                                                    const colors: Record<string, string> = {
+                                                        "Next.js": "text-blue-400 border-blue-400/30 bg-blue-400/5 hover:border-blue-400/60 hover:bg-blue-400/15",
+                                                        "React.js": "text-cyan-400 border-cyan-400/30 bg-cyan-400/5 hover:border-cyan-400/60 hover:bg-cyan-400/15",
+                                                        "JavaScript (ES6+)": "text-yellow-400 border-yellow-400/30 bg-yellow-400/5 hover:border-yellow-400/60 hover:bg-yellow-400/15",
+                                                        "TypeScript": "text-blue-500 border-blue-500/30 bg-blue-500/5 hover:border-blue-500/60 hover:bg-blue-500/15",
+                                                        "Tailwind CSS": "text-sky-400 border-sky-400/30 bg-sky-400/5 hover:border-sky-400/60 hover:bg-sky-400/15",
+                                                        "Bootstrap": "text-purple-500 border-purple-500/30 bg-purple-500/5 hover:border-purple-500/60 hover:bg-purple-500/15",
+                                                        "Material UI": "text-blue-600 border-blue-600/30 bg-blue-600/5 hover:border-blue-600/60 hover:bg-blue-600/15",
+                                                        "React Query": "text-red-400 border-red-400/30 bg-red-400/5 hover:border-red-400/60 hover:bg-red-400/15",
+                                                        "Node.js": "text-green-500 border-green-500/30 bg-green-500/5 hover:border-green-500/60 hover:bg-green-500/15",
+                                                        "Express.js": "text-gray-400 border-gray-400/30 bg-gray-400/5 hover:border-gray-400/60 hover:bg-gray-400/15",
+                                                        "MongoDB (Mongoose)": "text-green-600 border-green-600/30 bg-green-600/5 hover:border-green-600/60 hover:bg-green-600/15",
+                                                        "REST APIs": "text-orange-400 border-orange-400/30 bg-orange-400/5 hover:border-orange-400/60 hover:bg-orange-400/15",
+                                                        "JWT Authentication": "text-pink-500 border-pink-500/30 bg-pink-500/5 hover:border-pink-500/60 hover:bg-pink-500/15",
+                                                        "Python": "text-yellow-500 border-yellow-500/30 bg-yellow-500/5 hover:border-yellow-500/60 hover:bg-yellow-500/15",
+                                                        "Shopify": "text-green-400 border-green-400/30 bg-green-400/5 hover:border-green-400/60 hover:bg-green-400/15",
+                                                        "Git": "text-orange-600 border-orange-600/30 bg-orange-600/5 hover:border-orange-600/60 hover:bg-orange-600/15",
+                                                        "GitHub": "text-white border-white/20 bg-white/5 hover:border-white/50 hover:bg-white/10",
+                                                        "GitLab": "text-orange-500 border-orange-500/30 bg-orange-500/5 hover:border-orange-500/60 hover:bg-orange-500/15",
+                                                        "Vite": "text-purple-400 border-purple-400/30 bg-purple-400/5 hover:border-purple-400/60 hover:bg-purple-400/15",
+                                                        "Postman": "text-orange-400 border-orange-400/30 bg-orange-400/5 hover:border-orange-400/60 hover:bg-orange-400/15",
+                                                        "Vercel": "text-white border-white/20 bg-white/5 hover:border-white/50 hover:bg-white/10",
+                                                        "Responsive Design": "text-indigo-400 border-indigo-400/30 bg-indigo-400/5 hover:border-indigo-400/60 hover:bg-indigo-400/15",
+                                                    };
+                                                    return (
+                                                        <motion.span
+                                                            key={skill}
+                                                            whileHover={{ scale: 1.05 }}
+                                                            className={`px-5 py-2.5 border rounded-2xl text-sm font-medium transition-all duration-300 cursor-default ${colors[skill] || "text-primary border-primary/30 bg-primary/5 hover:border-primary/60 hover:bg-primary/15"}`}
+                                                        >
+                                                            {skill}
+                                                        </motion.span>
+                                                    );
+                                                })}
+                                            </div>
+                                        )
+                                    };
+                                })}
                             />
                         </div>
                     </motion.div>

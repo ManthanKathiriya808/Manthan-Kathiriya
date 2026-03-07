@@ -1,17 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import ScrollyCanvas from "@/components/ScrollyCanvas";
-import About from "@/components/About";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Contact from "@/components/Contact";
 import TextReveal from "@/components/TextReveal";
-import Magnetic from "@/components/Magnetic";
-import ScrollVelocity from "@/components/ScrollVelocity";
-import FeatureSection from "@/components/FeatureSection";
-import TechStackBeams from "@/components/TechStackBeams";
+
+import dynamic from "next/dynamic";
+import type { SliderItemData } from "@/components/ui/ThreeDSlider";
+
+const About = dynamic(() => import("@/components/About"));
+const Projects = dynamic(() => import("@/components/Projects"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const TechStackBeams = dynamic(() => import("@/components/TechStackBeams"));
+const WoofyShowcase = dynamic(() => import("@/components/WoofyShowcase"));
+const ThreeDSlider = dynamic(() => import("@/components/ui/ThreeDSlider"));
+const Globe = dynamic(() => import("@/components/ui/globe").then((mod) => mod.Globe));
+
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +29,33 @@ export default function Home() {
       document.body.style.overflow = "auto";
     }
   }, [isLoaded]);
+
+  const sliderItems: SliderItemData[] = [
+    { title: "CREATIVE VISION", num: "01", imageUrl: "/images/portrait/WhatsApp Image 2026-03-07 at 15.56.26.jpeg" },
+    { title: "TECHNICAL MASTERY", num: "02", imageUrl: "/images/portrait/WhatsApp Image 2025-12-28 at 21.09.05.jpeg" },
+    { title: "YUKTI INNOVATORS", num: "03", imageUrl: "/images/portrait/Screenshot 2026-03-07 at 4.01.41 PM.png" },
+    { title: "ENERGY CHALLENGE", num: "04", imageUrl: "/images/portrait/my.jpeg" },
+    { title: "INNOVATION LEAD", num: "05", imageUrl: "/images/portrait/img2.jpeg" },
+    { title: "INNOVATION LEAD", num: "06", imageUrl: "/images/portrait/img1.jpeg" },
+    { title: "INNOVATION LEAD", num: "07", imageUrl: "/images/portrait/img3.jpeg" },
+    { title: "INNOVATION LEAD", num: "08", imageUrl: "/images/portrait/img4.jpeg" },
+  ];
+
+  const sliderContainerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sliderContainerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Map 0-1 scroll progress to 0-100 slider progress
+  const sliderProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const [sliderVal, setSliderVal] = useState(0);
+
+  useEffect(() => {
+    return sliderProgress.on("change", (latest) => {
+      setSliderVal(latest);
+    });
+  }, [sliderProgress]);
 
   return (
     <main className="relative min-h-screen bg-background selection:bg-white/30 selection:text-white">
@@ -68,7 +100,7 @@ export default function Home() {
             MANTHAN KATHIRIYA
           </TextReveal>
           <p className="text-lg md:text-2xl font-light text-white/60 max-w-2xl mx-auto leading-relaxed tracking-wide">
-            Frontend-focused <span className="text-white">MERN Stack Developer</span> & Founder of MP Dynamic Automation.
+            Frontend-focused <span className="text-white">MERN Stack Developer</span>.
             Building scalable AI-powered platforms & production-level UI architecture.
           </p>
           <motion.div
@@ -83,13 +115,36 @@ export default function Home() {
       </section>
 
       <About />
-      <ScrollVelocity />
-      <TechStackBeams />
 
+      <TechStackBeams />
       <Projects />
+      {/* Featured Showcase Section - Scroll Pinned */}
+      <section ref={sliderContainerRef} className="relative h-[300vh] w-full bg-background/50">
+        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+          <div className="mb-8 text-center px-4">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white uppercase italic">Moments & Milestones</h2>
+            <p className="text-white/40 text-sm mt-2 tracking-widest uppercase">Scroll to explore the 3D Interactive Gallery</p>
+          </div>
+          <div className="w-full h-[60vh] md:h-[70vh]">
+            <ThreeDSlider items={sliderItems} scrollProgress={sliderVal} />
+          </div>
+        </div>
+      </section>
+
+
       <Experience />
+      <WoofyShowcase />
       <Contact />
-    </main >
+
+      {/* Globe Demo Section */}
+      <section className="relative w-full flex flex-col items-center justify-center bg-background px-4 overflow-hidden -mt-10 md:-mt-20">
+        <div className="bg-background relative flex w-full max-w-4xl h-[300px] md:h-[400px] items-center justify-center overflow-hidden px-4 md:px-40 pb-0">
+
+          <Globe className="top-0 md:top-10 scale-[1.2] md:scale-100" />
+          <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
+        </div>
+      </section>
+    </main>
   );
 }
 

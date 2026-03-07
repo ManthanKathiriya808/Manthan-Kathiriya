@@ -53,11 +53,11 @@ const RipplePlane = ({ imageSrc }: RipplePlaneProps) => {
 
     useFrame((state) => {
         const { mouse, clock } = state;
-        if (meshRef.current) {
+        if (meshRef.current && meshRef.current.material instanceof THREE.ShaderMaterial) {
             // Convert mouse coordinates (-1 to 1) to UV coordinates (0 to 1)
-            uniforms.uMouse.value.x = (mouse.x + 1) / 2;
-            uniforms.uMouse.value.y = (mouse.y + 1) / 2;
-            uniforms.uTime.value = clock.getElapsedTime();
+            meshRef.current.material.uniforms.uMouse.value.x = (mouse.x + 1) / 2;
+            meshRef.current.material.uniforms.uMouse.value.y = (mouse.y + 1) / 2;
+            meshRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
         }
     });
 
