@@ -38,7 +38,8 @@ export default function Home() {
     { title: "INNOVATION LEAD", num: "05", imageUrl: "/images/portrait/img2.jpeg" },
     { title: "INNOVATION LEAD", num: "06", imageUrl: "/images/portrait/img1.jpeg" },
     { title: "INNOVATION LEAD", num: "07", imageUrl: "/images/portrait/img3.jpeg" },
-    { title: "INNOVATION LEAD", num: "08", imageUrl: "/images/portrait/img4.jpeg" },
+    { title: "INNOVATION LEAD", num: "08", imageUrl: "/images/portrait/img5.jpeg" },
+    { title: "INNOVATION LEAD", num: "09", imageUrl: "/images/portrait/img4.jpeg" },
   ];
 
   const sliderContainerRef = useRef<HTMLElement>(null);
