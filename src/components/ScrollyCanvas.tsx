@@ -29,8 +29,8 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
       const loadedImages: HTMLImageElement[] = new Array(FRAME_COUNT);
       let loadedCount = 0;
 
-      // Drop from 10 to 1 to fire FCP/LCP instantly after the FIRST frame is ready
-      const INITIAL_FRAMES_TO_LOAD = 1;
+      // Number of frames to load immediately so the user sees the initial render
+      const INITIAL_FRAMES_TO_LOAD = 3;
 
       // Function to load a single image
       const loadImage = (index: number): Promise<HTMLImageElement> => {
@@ -38,14 +38,6 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
           const img = new Image();
           const indexStr = index.toString().padStart(3, "0");
           img.src = `/sequence/frame_${indexStr}_delay-0.041s.webp`;
-
-          // Use fetch priority for the very first frame to boost LCP
-          if (index === 0) {
-            img.fetchPriority = "high";
-          } else {
-            img.fetchPriority = "low";
-          }
-
           img.onload = () => {
             loadedCount++;
             resolve(img);
@@ -71,14 +63,11 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
       // Show the canvas immediately since we have the first frame
       setImages([...loadedImages]);
       setImagesLoaded(true);
-      onLoaded();
 
-      // 2. Load the remaining frames in the background asynchronously,
-      // without blocking the main thread (fixes TBT and network payload blocking)
+      // 2. Load the remaining frames in the background asynchronously
       const loadRemaining = async () => {
-        // Load in smaller batches
-        const BATCH_SIZE = 5;
-
+        // Load in batches of 10 to not choke the network
+        const BATCH_SIZE = 10;
         for (let i = INITIAL_FRAMES_TO_LOAD; i < FRAME_COUNT; i += BATCH_SIZE) {
           const batchPromises = [];
           for (let j = 0; j < BATCH_SIZE && i + j < FRAME_COUNT; j++) {
@@ -93,17 +82,15 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
           // Update state smoothly as chunks arrive
           setImages([...loadedImages]);
 
-          // Yield to browser main thread to avoid layout thrashing and high TBT
-          await new Promise(r => setTimeout(r, 10));
+          // Yield to browser main thread
+          await new Promise(r => setTimeout(r, 0));
         }
+
+        // Signal to parent page component that all resources are fully loaded and the loader overlay can be removed
+        onLoaded();
       };
 
-      // Defer loading the rest of the frames until the page is fully interactive
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(() => loadRemaining(), { timeout: 2000 });
-      } else {
-        setTimeout(loadRemaining, 1000);
-      }
+      loadRemaining();
     };
 
     preloadImages();
