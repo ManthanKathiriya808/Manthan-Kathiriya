@@ -9,15 +9,15 @@ import { cn } from "@/lib/utils"
 const MOVEMENT_DAMPING = 1400
 
 const GLOBE_CONFIG: COBEOptions = {
-  width: 800,
-  height: 800,
+  width: 600,
+  height: 600,
   onRender: () => { },
-  devicePixelRatio: 2,
+  devicePixelRatio: 1,
   phi: 0,
   theta: 0.3,
   dark: 0,
   diffuse: 0.4,
-  mapSamples: 16000,
+  mapSamples: 4000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
@@ -71,6 +71,8 @@ export function Globe({
     }
   }
 
+  const isVisible = useRef(false)
+
   useEffect(() => {
     const onResize = () => {
       if (canvasRef.current) {
@@ -81,21 +83,30 @@ export function Globe({
     window.addEventListener("resize", onResize)
     onResize()
 
+    // Pause rendering when not visible to save CPU/GPU
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible.current = entry.isIntersecting },
+      { threshold: 0.1 }
+    )
+    if (canvasRef.current) observer.observe(canvasRef.current)
+
     const globe = createGlobe(canvasRef.current!, {
       ...config,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
+      width: widthRef.current,
+      height: widthRef.current,
       onRender: (state) => {
+        if (!isVisible.current) return
         if (!pointerInteracting.current) phiRef.current += 0.005
         state.phi = phiRef.current + rs.get()
-        state.width = widthRef.current * 2
-        state.height = widthRef.current * 2
+        state.width = widthRef.current
+        state.height = widthRef.current
       },
     })
 
     setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0)
     return () => {
       globe.destroy()
+      observer.disconnect()
       window.removeEventListener("resize", onResize)
     }
   }, [rs, config])

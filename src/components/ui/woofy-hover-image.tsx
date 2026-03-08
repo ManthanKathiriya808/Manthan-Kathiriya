@@ -462,16 +462,20 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   return (
     <div
       ref={containerRef}
-      className={cn("relative overflow-hidden flex items-center justify-center", className)}
+      className={cn("relative overflow-hidden flex items-center justify-center bg-neutral-900", className)}
       style={{ width, height }}
     >
+      {/* Blurred static img shown immediately before Three.js canvas loads */}
       <Image
         src={src}
         alt={alt}
         fill
+        priority
         className="object-cover"
-        style={{ zIndex: 0 }}
+        style={{ zIndex: 0, filter: 'blur(0px)' }}
         sizes="(max-width: 768px) 100vw, 50vw"
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
       />
     </div>
   );

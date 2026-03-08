@@ -4,6 +4,14 @@ import Perspective from "./Perspective";
 
 export default function Projects() {
     const projects = [
+          {
+            title: "Chamunda Nursery",
+            role: "Freelance",
+            desc: "Complete e-commerce store built with Shopify and a modern business landing page for a local plant nursery.",
+            tech: ["Shopify", "ShipRocket"],
+            link: "https://www.chamundanursery.in/",
+            githubLink: ""
+        },
         {
             title: "RFP AI",
             role: "Frontend Developer",
@@ -36,14 +44,7 @@ export default function Projects() {
             link: "#",
             githubLink: "https://github.com/ManthanKathiriya808/ManthanKathiriya808-smart-dustbin.git"
         },
-        {
-            title: "Chamunda Nursery",
-            role: "Freelance",
-            desc: "Complete e-commerce store built with Shopify and a modern business landing page for a local plant nursery.",
-            tech: ["Shopify", "ShipRocket"],
-            link: "https://www.chamundanursery.in/",
-            githubLink: ""
-        },
+      
         {
             title: "Shree Ram Engineering",
             role: "Freelance",

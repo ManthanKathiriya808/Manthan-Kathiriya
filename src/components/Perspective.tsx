@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface PerspectiveProps {
@@ -15,21 +14,13 @@ export default function Perspective({ children, className = "" }: PerspectivePro
     const mouseXSpring = useSpring(x);
     const mouseYSpring = useSpring(y);
 
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
-
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-
+        const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+        const yPct = (e.clientY - rect.top) / rect.height - 0.5;
         x.set(xPct);
         y.set(yPct);
     };
@@ -46,17 +37,11 @@ export default function Perspective({ children, className = "" }: PerspectivePro
             style={{
                 rotateY,
                 rotateX,
-                transformStyle: "preserve-3d",
+                transformStyle: "flat",
             }}
             className={`relative ${className}`}
         >
-            <div
-                style={{
-                    transform: "translateZ(75px)",
-                    transformStyle: "preserve-3d",
-                }}
-                className="h-full w-full"
-            >
+            <div className="h-full w-full">
                 {children}
             </div>
         </motion.div>

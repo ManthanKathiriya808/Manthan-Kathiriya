@@ -29,42 +29,51 @@ interface SliderItemProps {
 
 // We use forwardRef to expose the DOM element to the parent for direct manipulation
 const SliderItem = React.forwardRef<HTMLDivElement, SliderItemProps>(({ item, onClick }, ref) => {
+    const [imgLoaded, setImgLoaded] = useState(false);
+
     return (
         <div
             ref={ref}
             className="absolute top-1/2 left-1/2 cursor-pointer select-none rounded-xl 
-                shadow-2xl bg-black transform-origin-[0%_100%] pointer-events-auto
+                shadow-2xl bg-neutral-900 transform-origin-[0%_100%] pointer-events-auto
                 w-[var(--width)] h-[var(--height)]
                 -mt-[calc(var(--height)/2)] -ml-[calc(var(--width)/2)]
                 overflow-hidden will-change-transform"
             style={{
                 '--width': 'clamp(150px, 30vw, 300px)',
                 '--height': 'clamp(200px, 40vw, 400px)',
-                transition: 'none', // Critical: handle animation purely via JS
-                display: 'block', // Ensure initial visibility
+                transition: 'none',
+                display: 'block',
             } as CSSProperties & { [key: string]: any }}
             onClick={onClick}
         >
+            {/* Shimmer placeholder shown while image loads */}
+            {!imgLoaded && (
+                <div className="absolute inset-0 z-20 bg-gradient-to-br from-neutral-800 via-neutral-700 to-neutral-800 animate-pulse" />
+            )}
+
             <div
                 className="slider-item-content absolute inset-0 z-10 transition-opacity duration-300 ease-out will-change-opacity"
-                style={{ opacity: 1 }} // Initial opacity
+                style={{ opacity: 1 }}
             >
                 {/* Overlay for gradient effect */}
                 <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent via-50% to-black/50"></div>
-
 
                 {/* Number */}
                 <div className="absolute z-10 text-white top-2.5 left-5 text-[clamp(20px,10vw,80px)] font-bold opacity-30">
                     {item.num}
                 </div>
 
-                {/* Image */}
+                {/* Image with fade-in on load */}
                 <Image
                     src={item.imageUrl}
                     alt={item.title}
                     fill
-                    className="object-cover pointer-events-none"
+                    className="object-cover pointer-events-none transition-opacity duration-500"
+                    style={{ opacity: imgLoaded ? 1 : 0 }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onLoad={() => setImgLoaded(true)}
+                    loading="lazy"
                 />
             </div>
         </div>

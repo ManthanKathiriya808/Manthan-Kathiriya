@@ -30,7 +30,7 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
       let loadedCount = 0;
 
       // Number of frames to load immediately so the user sees the initial render
-      const INITIAL_FRAMES_TO_LOAD = 5;
+      const INITIAL_FRAMES_TO_LOAD = 10;
 
       // Function to load a single image
       const loadImage = (index: number): Promise<HTMLImageElement> => {
@@ -156,9 +156,23 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
   return (
     <div ref={containerRef} className="relative h-[500vh] w-full bg-[#121212]">
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
+        {/* Blurred placeholder — shown while canvas frames are loading */}
+        {!imagesLoaded && (
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url('/sequence/frame_000_delay-0.041s.webp')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'blur(20px)',
+              transform: 'scale(1.1)', // prevent blur edges
+              opacity: 0.6,
+            }}
+          />
+        )}
         <canvas
           ref={canvasRef}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover relative z-10"
         />
         {/* Only mount overlay text once images are loaded so they attach properly */}
         {imagesLoaded && <Overlay scrollYProgress={scrollYProgress} />}
