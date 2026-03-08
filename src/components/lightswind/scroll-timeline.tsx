@@ -144,7 +144,7 @@ const TimelineItem = ({
                             <div className="flex flex-wrap items-center gap-2 lg:gap-4">
                                 <span className="text-sm lg:text-xl text-primary font-mono tracking-widest">{event.subtitle}</span>
                                 <span className="hidden sm:block w-1 h-1 lg:w-1.5 lg:h-1.5 rounded-full bg-white/10" />
-                                <span className="text-white/20 font-mono text-[9px] lg:text-sm tracking-widest uppercase">{event.year}</span>
+                                <span className="text-white font-mono text-[9px] lg:text-sm tracking-widest uppercase">{event.year}</span>
                             </div>
                         </div>
                     </div>

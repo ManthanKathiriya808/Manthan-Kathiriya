@@ -9,42 +9,48 @@ export default function Projects() {
             role: "Frontend Developer",
             desc: "AI-Powered Request for Proposal Platform. Developed complete frontend for credit-based SaaS with role-based panels.",
             tech: ["React.js", "TypeScript", "React Query", "Tailwind CSS"],
-            link: "#"
+            link: "#",
+            githubLink: ""
         },
         {
             title: "RAGSuite",
             role: "Frontend Developer",
             desc: "AI Search & Chat Platform (RAG-based). Built Admin Dashboard and Embedded Search/Chat widget UI.",
             tech: ["React.js", "TypeScript", "Tailwind CSS"],
-            link: "#"
+            link: "#",
+            githubLink: ""
         },
         {
             title: "BookBazar",
             role: "Full Stack",
             desc: "Dynamic e-commerce website with product browsing, cart, and checkout features. Integrated user authentication.",
             tech: ["JavaScript", "CSS3", "Bootstrap", "UI Verse"],
-            link: "https://github.com/ManthanKathiriya808"
+            link: "https://bookbazar-final.vercel.app/",
+            githubLink: "https://github.com/ManthanKathiriya808/bookbazar-final.git"
         },
         {
             title: "Smart Dustbin",
             role: "IoT Developer",
             desc: "Waste Monitoring System. Real-time dashboard for bin fill levels, gas, temp & humidity using sensors.",
             tech: ["React", "Flask", "Arduino", "Sensors"],
-            link: "https://github.com/ManthanKathiriya808"
+            link: "#",
+            githubLink: "https://github.com/ManthanKathiriya808/ManthanKathiriya808-smart-dustbin.git"
         },
         {
             title: "Chamunda Nursery",
             role: "Freelance",
             desc: "Complete e-commerce store built with Shopify and a modern business landing page for a local plant nursery.",
             tech: ["Shopify", "ShipRocket"],
-            link: "https://www.chamundanursery.in/"
+            link: "https://www.chamundanursery.in/",
+            githubLink: ""
         },
         {
             title: "Shree Ram Engineering",
             role: "Freelance",
             desc: "Corporate website showcasing engineering services and professional portfolio.",
             tech: ["React", "Vite", "TailwindCSS"],
-            link: "https://shree-ram-engineering-fp45.vercel.app/"
+            link: "https://shree-ram-engineering-fp45.vercel.app/",
+            githubLink: ""
         }
     ];
 
@@ -90,9 +96,18 @@ export default function Projects() {
                                                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">{p.title}</h3>
                                                 <p className="text-xs font-mono text-white/30 uppercase tracking-widest">{p.role}</p>
                                             </div>
-                                            <a href={p.link} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-primary transition-all duration-300">
-                                                {p.link.includes('github') ? <Github className="w-5 h-5" /> : <ExternalLink className="w-5 h-5" />}
-                                            </a>
+                                            <div className="flex items-center gap-2 relative z-20 pointer-events-auto">
+                                                {p.githubLink && (
+                                                    <a href={p.githubLink} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
+                                                        <Github className="w-5 h-5" />
+                                                    </a>
+                                                )}
+                                                {p.link !== "#" && (
+                                                    <a href={p.link} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
+                                                        <ExternalLink className="w-5 h-5" />
+                                                    </a>
+                                                )}
+                                            </div>
                                         </div>
 
                                         <p className="text-white/50 text-base leading-relaxed mb-10 flex-1">

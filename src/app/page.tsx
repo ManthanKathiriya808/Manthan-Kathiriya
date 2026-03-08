@@ -15,7 +15,6 @@ const Contact = dynamic(() => import("@/components/Contact"));
 const TechStackBeams = dynamic(() => import("@/components/TechStackBeams"));
 const WoofyShowcase = dynamic(() => import("@/components/WoofyShowcase"));
 const ThreeDSlider = dynamic(() => import("@/components/ui/ThreeDSlider"));
-const Globe = dynamic(() => import("@/components/ui/globe").then((mod) => mod.Globe));
 
 
 export default function Home() {
@@ -137,14 +136,6 @@ export default function Home() {
       <WoofyShowcase />
       <Contact />
 
-      {/* Globe Demo Section */}
-      <section className="relative w-full flex flex-col items-center justify-center bg-background px-4 overflow-hidden -mt-10 md:-mt-20">
-        <div className="bg-background relative flex w-full max-w-4xl h-[300px] md:h-[400px] items-center justify-center overflow-hidden px-4 md:px-40 pb-0">
-
-          <Globe className="top-0 md:top-10 scale-[1.2] md:scale-100" />
-          <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
-        </div>
-      </section>
     </main>
   );
 }

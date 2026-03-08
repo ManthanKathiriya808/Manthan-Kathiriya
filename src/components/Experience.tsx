@@ -17,6 +17,17 @@ const experiences = [
     },
 
     {
+        company: "Parvam Softech",
+        role: "Trainee & Intern",
+        period: "6 Jan 2025 – 30 Jun 2025",
+        highlights: [
+            "Completed 3 months of structured training focused on HTML, CSS, and JavaScript fundamentals.",
+            "Worked as an intern for 3 months, building and styling web pages using HTML, CSS, and JavaScript.",
+            "Gained hands-on experience developing responsive UI components and interactive web features.",
+        ],
+    },
+
+    {
         company: "Smart India Hackathon",
         role: "Team Leader",
         period: "2023 – 2024",

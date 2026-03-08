@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, Instagram, ArrowRight, Send, MessageCircle } from "lucide-react";
 import { useForm, ValidationError } from '@formspree/react';
+import dynamic from "next/dynamic";
+
+const Globe = dynamic(() => import("@/components/ui/globe").then((mod) => mod.Globe));
 
 export default function Contact() {
     const [state, handleSubmit] = useForm("xbdanpov");
@@ -153,7 +156,12 @@ export default function Contact() {
                     <p className="text-white/40 text-sm tracking-widest uppercase font-medium">
                         © 2026 MANTHAN KATHIRIYA
                     </p>
+                </div>
 
+                {/* Globe */}
+                <div className="relative flex w-full max-w-4xl h-[300px] md:h-[400px] items-center justify-center overflow-hidden mx-auto px-4 md:px-40">
+                    <Globe className="top-0 md:top-10 scale-[1.2] md:scale-100" />
+                    <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
                 </div>
             </div>
         </footer>

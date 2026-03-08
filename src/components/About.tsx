@@ -20,19 +20,19 @@ import {
 } from "react-icons/si";
 
 const techLogos = [
-    { node: <SiReact />, title: "React", href: "https://react.dev" },
-    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-    { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-    { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
-    { node: <SiMongodb />, title: "MongoDB", href: "https://www.mongodb.com" },
-    { node: <SiExpress />, title: "Express", href: "https://expressjs.com" },
-    { node: <SiPython />, title: "Python", href: "https://www.python.org" },
-    { node: <SiFramer />, title: "Framer", href: "https://www.framer.com/motion/" },
-    { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
-    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
-    { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
-    { node: <SiShopify />, title: "Shopify", href: "https://www.shopify.com" },
+    { node: <SiReact className="text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs className="text-white" />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript className="text-[#3178C6]" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiTailwindcss className="text-[#38BDF8]" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+    { node: <SiNodedotjs className="text-[#339933]" />, title: "Node.js", href: "https://nodejs.org" },
+    { node: <SiMongodb className="text-[#47A248]" />, title: "MongoDB", href: "https://www.mongodb.com" },
+    { node: <SiExpress className="text-gray-400" />, title: "Express", href: "https://expressjs.com" },
+    { node: <SiPython className="text-[#FFD43B]" />, title: "Python", href: "https://www.python.org" },
+    { node: <SiFramer className="text-white" />, title: "Framer", href: "https://www.framer.com/motion/" },
+    { node: <SiVercel className="text-white" />, title: "Vercel", href: "https://vercel.com" },
+    { node: <SiGit className="text-[#F05032]" />, title: "Git", href: "https://git-scm.com" },
+    { node: <SiGithub className="text-white" />, title: "GitHub", href: "https://github.com" },
+    { node: <SiShopify className="text-[#96BF48]" />, title: "Shopify", href: "https://www.shopify.com" },
 ];
 
 const skills = [
@@ -69,7 +69,7 @@ export default function About() {
                                 I am a <span className="text-white font-bold opacity-100">Frontend Architect</span> focused on building the connective tissue between innovative design and terminal-level engineering.
                             </p>
                             <p>
-                                With 8 months of industrial MERN experience, I specialize in <span className="text-secondary font-medium italic opacity-80">AI-powered SaaS platforms</span> and high-stakes UI/UX infrastructure.
+                                I specialize in <span className="text-secondary font-medium italic opacity-80">AI-powered SaaS platforms</span> and high-stakes UI/UX infrastructure.
                             </p>
                         </div>
 
@@ -88,7 +88,7 @@ export default function About() {
                                 gap={50}
                                 fadeOut
                                 scaleOnHover
-                                className="opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                                className="opacity-80 hover:opacity-100 transition-all duration-500"
                             />
                         </motion.div>
                     </motion.div>
