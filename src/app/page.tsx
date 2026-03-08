@@ -12,9 +12,11 @@ const About = dynamic(() => import("@/components/About"));
 const Projects = dynamic(() => import("@/components/Projects"));
 const Experience = dynamic(() => import("@/components/Experience"));
 const Contact = dynamic(() => import("@/components/Contact"));
-const TechStackBeams = dynamic(() => import("@/components/TechStackBeams"));
-const WoofyShowcase = dynamic(() => import("@/components/WoofyShowcase"));
-const ThreeDSlider = dynamic(() => import("@/components/ui/ThreeDSlider"));
+// Visual-heavy interactive components - defer their JS execution to client-side only
+const TechStackBeams = dynamic(() => import("@/components/TechStackBeams"), { ssr: false });
+const WoofyShowcase = dynamic(() => import("@/components/WoofyShowcase"), { ssr: false });
+const ThreeDSlider = dynamic(() => import("@/components/ui/ThreeDSlider"), { ssr: false });
+
 
 
 export default function Home() {

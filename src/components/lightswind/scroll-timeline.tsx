@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-import { Calendar } from "lucide-react";
+import { Calendar, ExternalLink, Linkedin } from "lucide-react";
 
 export interface TimelineEvent {
     id?: string;
@@ -17,6 +17,7 @@ export interface TimelineEvent {
     title: string;
     subtitle?: string;
     description: string;
+    link?: string;
     highlights?: string[];
     icon?: React.ReactNode;
     color?: string;
@@ -145,6 +146,18 @@ const TimelineItem = ({
                                 <span className="text-sm lg:text-xl text-primary font-mono tracking-widest">{event.subtitle}</span>
                                 <span className="hidden sm:block w-1 h-1 lg:w-1.5 lg:h-1.5 rounded-full bg-white/10" />
                                 <span className="text-white font-mono text-[9px] lg:text-sm tracking-widest uppercase">{event.year}</span>
+                                {event.link && (
+                                    <motion.a
+                                        href={event.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.1 }}
+                                        className="text-[#0077B5] transition-colors flex items-center gap-1 ml-2"
+                                        aria-label="LinkedIn Profile"
+                                    >
+                                        <Linkedin className="w-4 h-4 lg:w-5 lg:h-5" />
+                                    </motion.a>
+                                )}
                             </div>
                         </div>
                     </div>
