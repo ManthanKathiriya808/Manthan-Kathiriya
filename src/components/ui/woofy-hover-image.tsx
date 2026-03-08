@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 import { cn } from '@/lib/utils';
 import * as THREE from 'three';
 
@@ -54,6 +55,11 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   const isMouseInsideRef = useRef(false);
   const targetMouseRef = useRef(new THREE.Vector2(0.5, 0.5));
   const lerpedMouseRef = useRef(new THREE.Vector2(0.5, 0.5));
+
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
 
   const vertexShader = `
     varying vec2 v_uv;
@@ -274,7 +280,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   }, []);
 
   const initializeEffect = useCallback(() => {
-    if (!containerRef.current || disabled) return;
+    if (!containerRef.current || disabled || !inView) return;
 
     const container = containerRef.current;
     const loader = new THREE.TextureLoader();
@@ -366,7 +372,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
       animate();
     });
-  }, [src, effectType, turbulenceIntensity, animationSpeed, effectIntensity, invertMask, duotoneColor1, duotoneColor2, getEffectTypeValue, hexToRgb, disabled]);
+  }, [src, effectType, turbulenceIntensity, animationSpeed, effectIntensity, invertMask, duotoneColor1, duotoneColor2, getEffectTypeValue, hexToRgb, disabled, inView]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!containerRef.current || !uniformsRef.current || disabled) return;
@@ -461,7 +467,11 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
   return (
     <div
-      ref={containerRef}
+      ref={(node) => {
+        // @ts-ignore
+        containerRef.current = node;
+        inViewRef(node);
+      }}
       className={cn("relative overflow-hidden flex items-center justify-center bg-neutral-900", className)}
       style={{ width, height }}
     >
@@ -471,11 +481,10 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
         alt={alt}
         fill
         priority
-        className="object-cover"
-        style={{ zIndex: 0, filter: 'blur(0px)' }}
-        sizes="(max-width: 768px) 100vw, 50vw"
-        placeholder="blur"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+        className="object-cover transition-opacity duration-700"
+        style={{ zIndex: 0 }}
+        sizes="(max-width: 768px) 100vw, 80vw"
+        loading="eager"
       />
     </div>
   );
