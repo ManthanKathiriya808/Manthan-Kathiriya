@@ -164,14 +164,14 @@ const TimelineItem = ({
                     {event.highlights ? (
                         <ul className="space-y-4 lg:space-y-6">
                             {event.highlights.map((item, idx) => (
-                                <li key={idx} className="text-white/40 flex items-start gap-3 lg:gap-6 text-base lg:text-xl leading-relaxed font-light">
+                                <li key={idx} className="text-white/70 flex items-start gap-3 lg:gap-6 text-base lg:text-xl leading-relaxed font-light">
                                     <span className="mt-2 lg:mt-3 w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-primary/20 flex-shrink-0 group-hover:bg-primary/60 transition-colors" />
                                     <span className="flex-1">{item}</span>
                                 </li>
                             ))}
                         </ul>
                     ) : (
-                        <p className="text-white/40 text-base lg:text-xl leading-relaxed font-light">
+                        <p className="text-white/70 text-base lg:text-xl leading-relaxed font-light">
                             {event.description}
                         </p>
                     )}
@@ -215,6 +215,7 @@ export const ScrollTimeline = ({
 }: ScrollTimelineProps) => {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(-1);
+    const [isMobile, setIsMobile] = useState(false);
     const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const { scrollYProgress } = useScroll({
@@ -244,6 +245,13 @@ export const ScrollTimeline = ({
         return () => unsubscribe();
     }, [scrollYProgress, events.length, activeIndex]);
 
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     const getCardVariants = (index: number) => {
         const baseDelay =
             animationOrder === "simultaneous"
@@ -255,14 +263,16 @@ export const ScrollTimeline = ({
         const initialStates = {
             fade: { opacity: 0, y: 20 },
             slide: {
-                x:
-                    cardAlignment === "left"
+                x: isMobile
+                    ? 0
+                    : (cardAlignment === "left"
                         ? -50
                         : cardAlignment === "right"
                             ? 50
                             : index % 2 === 0
                                 ? -50
-                                : 50,
+                                : 50),
+                y: isMobile ? 20 : 0,
                 opacity: 0,
             },
             scale: { scale: 0.8, opacity: 0 },

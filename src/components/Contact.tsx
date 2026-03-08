@@ -36,23 +36,23 @@ export default function Contact() {
                     >
                         <div>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="h-[1px] w-8 bg-white/40" />
-                                <h2 className="text-sm uppercase tracking-[0.2em] text-white/40 font-medium">Get In Touch</h2>
+                                <div className="h-[1px] w-8 bg-white/60" />
+                                <h2 className="text-sm uppercase tracking-[0.2em] text-white/70 font-medium">Get In Touch</h2>
                             </div>
 
                             <h3 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-[1.1]">
                                 Let's build <br className="hidden md:block" />
-                                <span className="text-white/30 italic">something extraordinary.</span>
+                                <span className="text-white/50 italic">something extraordinary.</span>
                             </h3>
 
-                            <p className="text-xl text-white/60 mb-12 max-w-lg leading-relaxed font-light">
+                            <p className="text-xl text-white/80 mb-12 max-w-lg leading-relaxed font-light">
                                 Currently open for full-time roles and high-impact collaborations. Whether you have an idea or just want to say hi, my inbox is always open.
                             </p>
                         </div>
 
                         {/* Horizontal Social Links */}
                         <div className="mt-8 lg:mt-auto">
-                            <p className="text-sm text-white/40 uppercase tracking-widest mb-6 font-medium">Connect with me</p>
+                            <p className="text-sm text-white/70 uppercase tracking-widest mb-6 font-medium">Connect with me</p>
                             <div className="flex flex-wrap gap-4">
                                 {socialLinks.map((link, i) => (
                                     <motion.a
@@ -152,8 +152,8 @@ export default function Contact() {
                     </motion.div>
                 </div>
 
-                <div className="mt-16 pt-8 pb-0 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
-                    <p className="text-white/40 text-sm tracking-widest uppercase font-medium">
+                <div className="mt-16 pt-8 pb-0 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+                    <p className="text-white/70 text-sm tracking-widest uppercase font-medium">
                         © 2026 MANTHAN KATHIRIYA
                     </p>
                 </div>

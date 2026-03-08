@@ -64,7 +64,7 @@ export default function About() {
                             Designing <span className="text-white/20">Scalable</span> <br />
                             <span className="text-primary underline decoration-white/10 underline-offset-8">Architectures.</span>
                         </h3>
-                        <div className="space-y-8 text-lg sm:text-xl md:text-2xl text-white/40 leading-relaxed font-light max-w-2xl">
+                        <div className="space-y-8 text-lg sm:text-xl md:text-2xl text-white/70 leading-relaxed font-light max-w-2xl">
                             <p>
                                 I am a <span className="text-white font-bold opacity-100">Frontend Architect</span> focused on building the connective tissue between innovative design and terminal-level engineering.
                             </p>

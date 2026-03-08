@@ -4,7 +4,7 @@ import Perspective from "./Perspective";
 
 export default function Projects() {
     const projects = [
-          {
+        {
             title: "Chamunda Nursery",
             role: "Freelance",
             desc: "Complete e-commerce store built with Shopify and a modern business landing page for a local plant nursery.",
@@ -44,7 +44,7 @@ export default function Projects() {
             link: "#",
             githubLink: "https://github.com/ManthanKathiriya808/ManthanKathiriya808-smart-dustbin.git"
         },
-      
+
         {
             title: "Shree Ram Engineering",
             role: "Freelance",
@@ -67,11 +67,11 @@ export default function Projects() {
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     className="mb-32"
                 >
-                    <h2 className="text-primary font-mono text-[10px] sm:text-xs uppercase tracking-[0.6em] mb-6 opacity-70">Selected Works</h2>
+                    <h2 className="text-primary font-mono text-[10px] sm:text-xs uppercase tracking-[0.6em] mb-6 opacity-90">Selected Works</h2>
                     <h3 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-[-0.05em] uppercase text-white mb-10">
-                        Built to <span className="text-white/10">Scale.</span>
+                        Built to <span className="text-white/20">Scale.</span>
                     </h3>
-                    <p className="text-white/40 text-lg sm:text-xl lg:text-2xl max-w-3xl leading-relaxed font-light">
+                    <p className="text-white/70 text-lg sm:text-xl lg:text-2xl max-w-3xl leading-relaxed font-light">
                         A curation of high-performance architectures and interactive digital experiences.
                     </p>
                 </motion.div>
@@ -95,23 +95,23 @@ export default function Projects() {
                                         <div className="flex justify-between items-start mb-10">
                                             <div>
                                                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">{p.title}</h3>
-                                                <p className="text-xs font-mono text-white/30 uppercase tracking-widest">{p.role}</p>
+                                                <p className="text-xs font-mono text-white/60 uppercase tracking-widest">{p.role}</p>
                                             </div>
                                             <div className="flex items-center gap-2 relative z-20 pointer-events-auto">
                                                 {p.githubLink && (
-                                                    <a href={p.githubLink} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
+                                                    <a href={p.githubLink} aria-label={`${p.title} GitHub repository`} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
                                                         <Github className="w-5 h-5" />
                                                     </a>
                                                 )}
                                                 {p.link !== "#" && (
-                                                    <a href={p.link} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
+                                                    <a href={p.link} aria-label={`${p.title} Live Project`} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-primary transition-all duration-300 relative z-20 pointer-events-auto">
                                                         <ExternalLink className="w-5 h-5" />
                                                     </a>
                                                 )}
                                             </div>
                                         </div>
 
-                                        <p className="text-white/50 text-base leading-relaxed mb-10 flex-1">
+                                        <p className="text-white/70 text-base leading-relaxed mb-10 flex-1">
                                             {p.desc}
                                         </p>
 
