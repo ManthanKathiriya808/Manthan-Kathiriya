@@ -15,11 +15,11 @@ const GLOBE_CONFIG: COBEOptions = {
   devicePixelRatio: 1,
   phi: 0,
   theta: 0.3,
-  dark: 0,
+  dark: 1,
   diffuse: 0.4,
   mapSamples: 4000,
   mapBrightness: 1.2,
-  baseColor: [1, 1, 1],
+  baseColor: [0.1, 0.1, 0.1],
   markerColor: [251 / 255, 100 / 255, 21 / 255],
   glowColor: [1, 1, 1],
   markers: [
@@ -92,14 +92,15 @@ export function Globe({
 
     const globe = createGlobe(canvasRef.current!, {
       ...config,
-      width: widthRef.current,
-      height: widthRef.current,
+      width: widthRef.current * (window.devicePixelRatio || 1),
+      height: widthRef.current * (window.devicePixelRatio || 1),
+      devicePixelRatio: window.devicePixelRatio || 1,
       onRender: (state) => {
         if (!isVisible.current) return
         if (!pointerInteracting.current) phiRef.current += 0.005
         state.phi = phiRef.current + rs.get()
-        state.width = widthRef.current
-        state.height = widthRef.current
+        state.width = widthRef.current * (window.devicePixelRatio || 1)
+        state.height = widthRef.current * (window.devicePixelRatio || 1)
       },
     })
 

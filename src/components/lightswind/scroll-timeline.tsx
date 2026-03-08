@@ -71,7 +71,8 @@ const TimelineItem = ({
     const yOffset = useTransform(
         smoothProgress,
         [0, 1],
-        [parallaxIntensity * 50, -parallaxIntensity * 50]
+        [parallaxIntensity * 50, -parallaxIntensity * 50],
+        { clamp: true }
     );
 
     return (
@@ -229,7 +230,7 @@ export const ScrollTimeline = ({
         restDelta: 0.001,
     });
 
-    const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+    const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"], { clamp: true });
 
     useEffect(() => {
         const unsubscribe = scrollYProgress.on("change", (v) => {

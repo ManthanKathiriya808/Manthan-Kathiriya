@@ -161,7 +161,7 @@ export default function Contact() {
                 {/* Globe */}
                 <div className="relative flex w-full max-w-4xl h-[300px] md:h-[400px] items-center justify-center overflow-hidden mx-auto px-4 md:px-40">
                     <Globe className="top-0 md:top-10 scale-[1.2] md:scale-100" />
-                    <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
+                    <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.5),transparent)]" />
                 </div>
             </div>
         </footer>
