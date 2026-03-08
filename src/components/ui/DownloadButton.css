@@ -1,0 +1,239 @@
+/* From Uiverse.io by Na3ar-17 - Modified for Premium Look */
+.download-container {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.download-container .label {
+    background-color: var(--glass);
+    border: 1.5px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    width: 180px;
+    /* Slightly wider for "Download CV" */
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 6px;
+    position: relative;
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+}
+
+.download-container .label:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.download-container .label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+    transition: all 0.4s ease;
+    border-radius: 100%;
+    margin: auto;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.download-container .label .input {
+    display: none;
+}
+
+.download-container .label .title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--foreground);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: absolute;
+    right: 22px;
+    bottom: 18px;
+    text-align: center;
+    margin-bottom: 0px !important;
+    letter-spacing: 0.02em;
+    opacity: 0.8;
+}
+
+.download-container .label .title:last-child {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.download-container .label .circle {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+    overflow: hidden;
+}
+
+.download-container .label:hover .circle {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+}
+
+.download-container .label .circle .icon {
+    color: #fff;
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.download-container .label .circle .square {
+    aspect-ratio: 1;
+    width: 14px;
+    border-radius: 2px;
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+    z-index: 3;
+}
+
+.download-container .label .circle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--secondary);
+    width: 100%;
+    height: 0;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.download-container .label:has(.input:checked) {
+    width: 54px;
+    border-color: var(--primary);
+    animation: installed 0.4s cubic-bezier(0.23, 1, 0.32, 1) 3.5s forwards;
+}
+
+.download-container .label:has(.input:checked)::before {
+    animation: rotate 3s ease-in-out 0.4s forwards;
+}
+
+.download-container .label .input:checked+.circle {
+    animation:
+        pulse 1s forwards,
+        circleDelete 0.2s ease 3.5s forwards;
+    rotate: 180deg;
+}
+
+.download-container .label .input:checked+.circle::before {
+    animation: installing 3s ease-in-out forwards;
+}
+
+.download-container .label .input:checked+.circle .icon {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.download-container .label:has(.input:checked) .circle .square {
+    opacity: 1;
+    visibility: visible;
+}
+
+.download-container .label .input:checked~.title {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.download-container .label .input:checked~.title:last-child {
+    animation: showInstalledMessage 0.4s cubic-bezier(0.23, 1, 0.32, 1) 3.5s forwards;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 16px rgba(139, 92, 246, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+@keyframes installing {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(-90deg) translate(25px) rotate(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    99% {
+        transform: rotate(270deg) translate(25px) rotate(270deg);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes installed {
+    100% {
+        width: 160px;
+        border-color: #10b981;
+        /* Emerald-500 */
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+}
+
+@keyframes circleDelete {
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes showInstalledMessage {
+    100% {
+        opacity: 1;
+        visibility: visible;
+        right: 48px;
+        color: #10b981;
+    }
+}

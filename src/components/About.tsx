@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import LogoLoop from "./LogoLoop";
 import { Tabs } from "./ui/tabs";
+import DownloadButton from "./ui/DownloadButton";
 import {
     SiReact,
     SiNextdotjs,
@@ -72,6 +73,17 @@ export default function About() {
                                 I specialize in <span className="text-secondary font-medium italic opacity-80">AI-powered SaaS platforms</span> and high-stakes UI/UX infrastructure.
                             </p>
                         </div>
+
+                        {/* Download Button */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="mt-10"
+                        >
+                            <DownloadButton />
+                        </motion.div>
 
                         {/* Tech Logo Loop */}
                         <motion.div
