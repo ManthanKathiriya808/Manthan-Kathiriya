@@ -93,12 +93,17 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.5 }}
           className="z-10"
         >
-          <TextReveal
-            highlight="KATHIRIYA"
-            className="text-5xl md:text-8xl font-black tracking-tighter text-white mb-4 uppercase flex justify-center"
-          >
-            MANTHAN KATHIRIYA
-          </TextReveal>
+          <h1>
+            <TextReveal
+              highlight="KATHIRIYA"
+              className="text-5xl md:text-8xl font-black tracking-tighter text-white mb-4 uppercase flex justify-center"
+            >
+              MANTHAN KATHIRIYA
+            </TextReveal>
+          </h1>
+          <h2 className="text-xl md:text-3xl font-medium text-white max-w-2xl mx-auto leading-relaxed tracking-wide mb-4">
+            React Developer & Frontend Engineer
+          </h2>
           <p className="text-lg md:text-2xl font-light text-white/60 max-w-2xl mx-auto leading-relaxed tracking-wide">
             Frontend-focused <span className="text-white">MERN Stack Developer</span>.
             Building scalable AI-powered platforms & production-level UI architecture.

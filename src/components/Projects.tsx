@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Perspective from "./Perspective";
+import Link from "next/link";
 
 export default function Projects() {
     const projects = [
@@ -18,6 +19,7 @@ export default function Projects() {
             desc: "AI-powered Request for Proposal platform. Developed the frontend for a credit-based SaaS application with role-based dashboards, proposal generation workflows, and dynamic UI components.",
             tech: ["React.js", "TypeScript", "React Query", "Tailwind CSS"],
             link: "#",
+            internalLink: "/projects/ai-proposal-platform",
             githubLink: ""
         },
         {
@@ -26,6 +28,7 @@ export default function Projects() {
             desc: "AI-powered knowledge search and chat platform using Retrieval-Augmented Generation (RAG). Built admin dashboard and embedded search/chat widget interface.",
             tech: ["React.js", "TypeScript", "Tailwind CSS"],
             link: "#",
+            internalLink: "/projects/ai-knowledge-search",
             githubLink: ""
         },
         {
@@ -34,6 +37,7 @@ export default function Projects() {
             desc: "Dynamic e-commerce website with product browsing, cart, and checkout features. Integrated user authentication.",
             tech: ["JavaScript", "CSS3", "Bootstrap", "UI Verse"],
             link: "https://bookbazar-final.vercel.app/",
+            internalLink: "/projects/bookbazar",
             githubLink: "https://github.com/ManthanKathiriya808/bookbazar-final.git"
         },
         {
@@ -42,6 +46,7 @@ export default function Projects() {
             desc: "Waste Monitoring System. Real-time dashboard for bin fill levels, gas, temp & humidity using sensors.",
             tech: ["React", "Flask", "Arduino", "Sensors"],
             link: "#",
+            internalLink: "/projects/smart-dustbin",
             githubLink: "https://github.com/ManthanKathiriya808/ManthanKathiriya808-smart-dustbin.git"
         },
 
@@ -71,8 +76,13 @@ export default function Projects() {
                     <h3 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-[-0.05em] uppercase text-white mb-10">
                         Built to <span className="text-white/20">Scale.</span>
                     </h3>
-                    <p className="text-white/70 text-lg sm:text-xl lg:text-2xl max-w-3xl leading-relaxed font-light">
+                    <p className="text-white/70 text-lg sm:text-xl lg:text-2xl max-w-3xl leading-relaxed font-light mb-6">
                         A curation of high-performance architectures and interactive digital experiences.
+                    </p>
+                    <p className="text-white/60 text-base sm:text-lg max-w-3xl leading-relaxed">
+                        Projects built by Manthan Kathiriya including MERN stack applications,
+                        IoT systems, SaaS dashboards, and AI powered platforms using React.js,
+                        Next.js and modern web technologies.
                     </p>
                 </motion.div>
 
@@ -111,9 +121,17 @@ export default function Projects() {
                                             </div>
                                         </div>
 
-                                        <p className="text-white/70 text-base leading-relaxed mb-10 flex-1">
+                                        <p className="text-white/70 text-base leading-relaxed mb-6 flex-1">
                                             {p.desc}
                                         </p>
+                                        
+                                        {"internalLink" in p && p.internalLink && (
+                                            <div className="mb-6 pointer-events-auto relative z-20">
+                                                <Link href={p.internalLink} className="text-primary hover:text-white text-sm font-semibold uppercase tracking-widest transition-colors flex items-center">
+                                                    View Project Details <span className="ml-2 font-mono text-lg">→</span>
+                                                </Link>
+                                            </div>
+                                        )}
 
                                         <div className="flex flex-wrap gap-2 mt-auto">
                                             {p.tech.map((t, idx) => {
