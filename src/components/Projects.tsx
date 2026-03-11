@@ -13,17 +13,17 @@ export default function Projects() {
             githubLink: ""
         },
         {
-            title: "RFP AI",
+            title: "AI Proposal Platform",
             role: "Frontend Developer",
-            desc: "AI-Powered Request for Proposal Platform. Developed complete frontend for credit-based SaaS with role-based panels.",
+            desc: "AI-powered Request for Proposal platform. Developed the frontend for a credit-based SaaS application with role-based dashboards, proposal generation workflows, and dynamic UI components.",
             tech: ["React.js", "TypeScript", "React Query", "Tailwind CSS"],
             link: "#",
             githubLink: ""
         },
         {
-            title: "RAGSuite",
+            title: "AI Knowledge Search Platform",
             role: "Frontend Developer",
-            desc: "AI Search & Chat Platform (RAG-based). Built Admin Dashboard and Embedded Search/Chat widget UI.",
+            desc: "AI-powered knowledge search and chat platform using Retrieval-Augmented Generation (RAG). Built admin dashboard and embedded search/chat widget interface.",
             tech: ["React.js", "TypeScript", "Tailwind CSS"],
             link: "#",
             githubLink: ""
