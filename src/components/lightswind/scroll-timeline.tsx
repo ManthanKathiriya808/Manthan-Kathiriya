@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
     motion,
     MotionValue,
+    Variants,
     useScroll,
     useTransform,
     useSpring,
@@ -63,7 +64,7 @@ const TimelineItem = ({
     index: number;
     activeIndex: number;
     getCardClasses: (i: number) => string;
-    getCardVariants: (i: number) => unknown;
+    getCardVariants: (i: number) => Variants;
     cardAlignment: string;
     parallaxIntensity: number;
     smoothProgress: MotionValue<number>;
@@ -255,7 +256,7 @@ export const ScrollTimeline = ({
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
-    const getCardVariants = (index: number) => {
+    const getCardVariants = (index: number): Variants => {
         const baseDelay =
             animationOrder === "simultaneous"
                 ? 0
@@ -297,7 +298,6 @@ export const ScrollTimeline = ({
                     ease: [0.25, 0.1, 0.25, 1.0] as [number, number, number, number],
                 },
             },
-            viewport: { once: false, margin: "-100px" },
         };
     };
 
