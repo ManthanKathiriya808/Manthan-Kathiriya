@@ -3,7 +3,15 @@
 import { motion } from "framer-motion";
 import { ScrollTimeline, TimelineEvent } from "./lightswind/scroll-timeline";
 
-const experiences = [
+type ExperienceItem = {
+    company: string;
+    role: string;
+    period: string;
+    link?: string;
+    highlights: string[];
+};
+
+const experiences: ExperienceItem[] = [
     {
         company: "NITSAN Technologies",
         role: "Jr. Frontend Developer",
@@ -45,7 +53,7 @@ const timelineEvents: TimelineEvent[] = experiences.map((exp, i) => ({
     year: exp.period,
     title: exp.role,
     subtitle: exp.company,
-    link: (exp as any).link,
+    link: exp.link,
     description: exp.highlights.join(" "),
     highlights: exp.highlights,
 }));

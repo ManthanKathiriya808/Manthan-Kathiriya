@@ -114,7 +114,8 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
         const canvasRatio = canvas.width / canvas.height;
         const imgRatio = img.width / img.height;
 
-        let drawWidth, drawHeight, offsetX, offsetY;
+        let drawWidth: number;
+        let drawHeight: number;
 
         if (canvasRatio > imgRatio) {
           drawWidth = canvas.width;
@@ -128,8 +129,8 @@ export default function ScrollyCanvas({ onLoaded }: ScrollyCanvasProps) {
         drawWidth *= scaleFactor;
         drawHeight *= scaleFactor;
 
-        offsetX = (canvas.width - drawWidth) / 2;
-        offsetY = (canvas.height - drawHeight) / 2;
+        const offsetX = (canvas.width - drawWidth) / 2;
+        const offsetY = (canvas.height - drawHeight) / 2;
 
         ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
       }

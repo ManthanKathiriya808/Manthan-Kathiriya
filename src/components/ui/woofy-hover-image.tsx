@@ -27,6 +27,22 @@ export interface WoofyHoverImageProps {
   disabled?: boolean;
 }
 
+type WoofyHoverImageUniforms = {
+  u_texture: { value: THREE.Texture };
+  u_mouse: { value: THREE.Vector2 };
+  u_time: { value: number };
+  u_resolution: { value: THREE.Vector2 };
+  u_radius: { value: number };
+  u_speed: { value: number };
+  u_imageAspect: { value: number };
+  u_turbulenceIntensity: { value: number };
+  u_effectType: { value: number };
+  u_effectColor1: { value: THREE.Color };
+  u_effectColor2: { value: THREE.Color };
+  u_effectIntensity: { value: number };
+  u_invertMask: { value: boolean };
+};
+
 const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   src,
   alt = '',
@@ -50,7 +66,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const uniformsRef = useRef<any>(null);
+  const uniformsRef = useRef<WoofyHoverImageUniforms | null>(null);
   const animationIdRef = useRef<number | null>(null);
   const isMouseInsideRef = useRef(false);
   const targetMouseRef = useRef(new THREE.Vector2(0.5, 0.5));
@@ -286,7 +302,8 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
     const loader = new THREE.TextureLoader();
 
     loader.load(src, (texture) => {
-      const imageAspect = texture.image.width / texture.image.height;
+      const image = texture.image as { width: number; height: number };
+      const imageAspect = image.width / image.height;
 
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;
@@ -301,7 +318,7 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
       const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-      const uniforms = {
+      const uniforms: WoofyHoverImageUniforms = {
         u_texture: { value: texture },
         u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
         u_time: { value: 0.0 },
@@ -467,8 +484,8 @@ const WoofyHoverImage: React.FC<WoofyHoverImageProps> = ({
 
   return (
     <div
-      ref={(node) => {
-        // @ts-ignore
+      ref={(node: HTMLDivElement | null) => {
+        if (!node) return;
         containerRef.current = node;
         inViewRef(node);
       }}

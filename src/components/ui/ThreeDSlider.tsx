@@ -7,7 +7,7 @@ export interface SliderItemData {
     title: string;
     num: string;
     imageUrl: string;
-    data?: any;
+    data?: unknown;
 }
 
 interface ThreeDSliderProps {
@@ -44,7 +44,7 @@ const SliderItem = React.forwardRef<HTMLDivElement, SliderItemProps>(({ item, on
                 '--height': 'clamp(200px, 40vw, 400px)',
                 transition: 'none',
                 display: 'block',
-            } as CSSProperties & { [key: string]: any }}
+            } as CSSProperties & { [key: string]: string | number }}
             onClick={onClick}
         >
             {/* Shimmer placeholder shown while image loads */}

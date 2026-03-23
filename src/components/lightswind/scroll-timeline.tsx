@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
     motion,
+    MotionValue,
     useScroll,
     useTransform,
     useSpring,
@@ -56,17 +57,17 @@ const TimelineItem = ({
     cardAlignment,
     parallaxIntensity,
     smoothProgress,
-    timelineRefs,
+    setTimelineRef,
 }: {
     event: TimelineEvent;
     index: number;
     activeIndex: number;
     getCardClasses: (i: number) => string;
-    getCardVariants: (i: number) => any;
+    getCardVariants: (i: number) => unknown;
     cardAlignment: string;
     parallaxIntensity: number;
-    smoothProgress: any;
-    timelineRefs: any;
+    smoothProgress: MotionValue<number>;
+    setTimelineRef: (index: number, el: HTMLDivElement | null) => void;
 }) => {
     const yOffset = useTransform(
         smoothProgress,
@@ -77,9 +78,7 @@ const TimelineItem = ({
 
     return (
         <div
-            ref={(el) => {
-                timelineRefs.current[index] = el;
-            }}
+            ref={(el) => setTimelineRef(index, el)}
             className={cn(
                 "relative flex items-center mb-12 lg:mb-20 py-4",
                 "flex-col lg:flex-row",
@@ -218,6 +217,9 @@ export const ScrollTimeline = ({
     const [activeIndex, setActiveIndex] = useState(-1);
     const [isMobile, setIsMobile] = useState(false);
     const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const setTimelineRef = (index: number, el: HTMLDivElement | null) => {
+        timelineRefs.current[index] = el;
+    };
 
     const { scrollYProgress } = useScroll({
         target: scrollRef,
@@ -443,7 +445,7 @@ export const ScrollTimeline = ({
                                 cardAlignment={cardAlignment}
                                 parallaxIntensity={parallaxIntensity}
                                 smoothProgress={smoothProgress}
-                                timelineRefs={timelineRefs}
+                                setTimelineRef={setTimelineRef}
                             />
                         ))}
                     </div>

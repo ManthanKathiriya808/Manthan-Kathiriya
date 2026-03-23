@@ -41,7 +41,7 @@ export default function Contact() {
                             </div>
 
                             <h3 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter leading-[1.1]">
-                                Let's build <br className="hidden md:block" />
+                                Let&apos;s build <br className="hidden md:block" />
                                 <span className="text-white/50 italic">something extraordinary.</span>
                             </h3>
 
@@ -145,7 +145,7 @@ export default function Contact() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="p-4 bg-green-500/10 border border-green-500/20 rounded-2xl mt-2 flex items-center justify-center gap-2 text-green-400"
                                 >
-                                    <span className="text-sm font-medium">Message sent successfully! I'll be in touch.</span>
+                                    <span className="text-sm font-medium">Message sent successfully! I&apos;ll be in touch.</span>
                                 </motion.div>
                             )}
                         </form>
