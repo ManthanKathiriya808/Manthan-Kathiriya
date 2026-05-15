@@ -12,10 +12,35 @@ type ExperienceItem = {
 };
 
 const experiences: ExperienceItem[] = [
+
+    {
+        company: "Edugenius Softwares LLP",
+        role: "AI & Robotics Teacher",
+        period: "April 2026 - Present",
+        link: "https://www.linkedin.com/company/edugenius-softwares-llp/posts/?feedView=all",
+        highlights: [
+            "Teaching Coding, AI, Robotics, and Virtual Reality to school students.",
+            "Conducting hands-on robotics and programming sessions using interactive learning methods.",
+            "Guiding students in developing real-world projects and problem-solving skills.",
+            "Creating engaging lesson plans and practical activities for different age groups.",
+            "Training students on coding platforms, app development, and basic electronics.",
+            "Managing computer lab activities and supporting STEM-based education initiatives.",
+            "Encouraging creativity, innovation, and teamwork through project-based learning."
+        ],
+    },    {
+        company: "Self-Employed",
+        role: "Freelance Web Developer",
+        period: "2024 - Present",
+        highlights: [
+            "Designing and building high-performance web applications, e-commerce sites, and business landing pages for global clients.",
+            "Developing end-to-end digital solutions utilizing modern web technologies including React.js, Next.js, Node.js, and Tailwind CSS.",
+            "Providing technical consulting, SEO optimization, and complete UI/UX modernization services."
+        ],
+    },
     {
         company: "NITSAN Technologies",
         role: "Jr. Frontend Developer",
-        period: "18 August 2025 - Present", // Fixed typo "!8" and year to be more realistic (2024 instead of 2025)
+        period: "August 2025 - March 2026",
         link: "https://www.linkedin.com/company/nitsan-technologies/posts/?feedView=all",
         highlights: [
             "Built production-ready React applications for AI-powered SaaS platforms.",
@@ -84,7 +109,7 @@ export default function Experience() {
                     title=""
                     subtitle=""
                     cardAlignment="alternating"
-                    revealAnimation="slide"
+                    revealAnimation="fade"
                     progressIndicator={true}
                     parallaxIntensity={0.1}
                     className="!min-h-0"

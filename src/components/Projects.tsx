@@ -1,10 +1,30 @@
+"use client";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Perspective from "./Perspective";
 import Link from "next/link";
 
 export default function Projects() {
+    const [showAll, setShowAll] = useState(false);
     const projects = [
+        {
+            title: "Punit Industries",
+            role: "Freelance",
+            desc: "Modernizing an industrial product catalog with a comprehensive React architecture. Features a Gemini AI chatbot and seamless WhatsApp integration for instant inquiries.",
+            tech: ["React", "Vite", "Tailwind CSS", "Gemini AI", "WhatsApp API"],
+            link: "https://punit-industries.vercel.app/",
+            githubLink: ""
+        },
+        {
+            title: "Paavan Engineering",
+            role: "Freelance",
+            desc: "Comprehensive redesign of an industrial machinery website. Modern Next.js application featuring an interactive Gemini AI chatbot, direct WhatsApp integration, and dynamic product pages.",
+            tech: ["Next.js", "React", "Tailwind CSS", "Gemini AI", "WhatsApp API"],
+            link: "https://www.paavanengineering.in/",
+            githubLink: ""
+        },
         {
             title: "Chamunda Nursery",
             role: "Freelance",
@@ -90,6 +110,7 @@ export default function Projects() {
                     {projects.map((p, i) => (
                         <motion.div
                             key={i}
+                            className={!showAll && i >= 3 ? "hidden md:block" : "block"}
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
@@ -152,6 +173,9 @@ export default function Projects() {
                                                     "Shopify": "text-green-400 border-green-400/30 bg-green-400/5",
                                                     "ShipRocket": "text-purple-400 border-purple-400/30 bg-purple-400/5",
                                                     "Vite": "text-purple-500 border-purple-500/30 bg-purple-500/5",
+                                                    "Next.js": "text-white border-white/30 bg-white/5",
+                                                    "Gemini AI": "text-blue-400 border-blue-400/30 bg-blue-400/5",
+                                                    "WhatsApp API": "text-green-500 border-green-500/30 bg-green-500/5",
                                                 };
                                                 return (
                                                     <span key={idx} className={`px-4 py-1.5 text-xs font-medium border rounded-full transition-all duration-300 ${colors[t] || "text-white/70 border-white/10 bg-white/5"} group-hover:border-opacity-60`}>
@@ -165,6 +189,24 @@ export default function Projects() {
                             </Perspective>
                         </motion.div>
                     ))}
+                </div>
+
+                <div className="mt-12 flex justify-center md:hidden">
+                    {!showAll ? (
+                        <button 
+                            onClick={() => setShowAll(true)}
+                            className="px-8 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition-all duration-300 font-medium text-sm uppercase tracking-wider"
+                        >
+                            View More Projects
+                        </button>
+                    ) : (
+                        <button 
+                            onClick={() => setShowAll(false)}
+                            className="px-8 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition-all duration-300 font-medium text-sm uppercase tracking-wider"
+                        >
+                            Show Less
+                        </button>
+                    )}
                 </div>
             </div>
         </section>

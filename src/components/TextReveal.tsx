@@ -49,7 +49,7 @@ export default function TextReveal({ text, children, className = "", delay = 0, 
     }
 
     return (
-        <motion.h3
+        <motion.div
             style={{ overflow: "hidden", display: "flex", flexWrap: "wrap", justifyContent: "inherit" }}
             variants={container}
             initial="hidden"
@@ -74,6 +74,6 @@ export default function TextReveal({ text, children, className = "", delay = 0, 
                     </span>
                 );
             })}
-        </motion.h3>
+        </motion.div>
     );
 }
